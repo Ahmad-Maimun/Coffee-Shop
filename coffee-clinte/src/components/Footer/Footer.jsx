@@ -1,4 +1,4 @@
-import { navbarLogo } from '../assets/images';
+import { navbarLogo } from '../../assets/images';
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
