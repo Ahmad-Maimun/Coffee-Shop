@@ -6,8 +6,12 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 // ahmadmaimunwdd
 // OW97v1ujorc1Np50
 
+app.use(cors());
+app.use(express.json());
+
 const uri =
-  'mongodb+srv://ahmadmaimunwdd:<db_password>@cluster0.mshgq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+  // 'mongodb+srv://ahmadmaimunwdd:<db_password>@cluster0.mshgq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+  'mongodb+srv://ahmadmaimunwdd:OW97v1ujorc1Np50@cluster0.mshgq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -29,7 +33,7 @@ async function run() {
     );
   } finally {
     // Ensures that the client will close when you finish/error
-    await client.close();
+    // await client.close();
   }
 }
 run().catch(console.dir);
