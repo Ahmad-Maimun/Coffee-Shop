@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Swal from 'sweetalert2';
 
 const AddCoffeeForm = () => {
   const submitHandler = (e) => {
@@ -30,7 +31,14 @@ const AddCoffeeForm = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.insertedId) {
+          e.target.reset();
+          Swal.fire({
+            title: 'Good job!',
+            text: 'Your coffee has been added!',
+            icon: 'success',
+          });
+        }
       });
   };
 

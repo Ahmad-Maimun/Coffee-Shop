@@ -8,8 +8,6 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 app.use(cors());
 app.use(express.json());
 
-console.log(process.env.SECRET_USER);
-
 const uri = `mongodb+srv://${process.env.SECRET_USER}:${process.env.SECRET_KEY}@cluster0.mshgq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -25,6 +23,15 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
+
+    const database = client.db('Coffe-ShopDB');
+    const coffeeCollection = database.collection('coffees');
+
+    app.post('/coffees', async (req, res) => {
+      const coffee = req.body;
+      const result = await coffeeCollection.insertOne(coffee);
+      res.send(result);
+    });
     // Send a ping to confirm a successful connection
     await client.db('admin').command({ ping: 1 });
     console.log(
