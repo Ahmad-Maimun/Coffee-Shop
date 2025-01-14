@@ -9,7 +9,7 @@ const AddCoffeeForm = () => {
     const name = e.target.name.value;
     const chef = e.target.chef.value;
     const supplier = e.target.supplier.value;
-    const taste = e.target.taste.value;
+    const price = e.target.price.value;
     const category = e.target.category.value;
     const details = e.target.details.value;
     const photoUrl = e.target.photoUrl.value;
@@ -17,7 +17,7 @@ const AddCoffeeForm = () => {
       name,
       chef,
       supplier,
-      taste,
+      price,
       category,
       details,
       photoUrl,
@@ -98,13 +98,13 @@ const AddCoffeeForm = () => {
                 />
               </div>
               <div>
-                <label htmlFor="taste">Taste</label>
+                <label htmlFor="price">Price</label>
                 <input
                   className="mt-4 w-full py-[11px] pl-[11px] text-base font-normal font-raleway rounded-[5px]"
-                  type="text"
-                  name="taste"
+                  type="number"
+                  name="price"
                   id=""
-                  placeholder="Enter coffee taste"
+                  placeholder="Enter coffee price"
                 />
               </div>
               <div>
@@ -133,7 +133,7 @@ const AddCoffeeForm = () => {
             </label>
             <input
               className="mt-4 w-full py-[11px] pl-[11px] text-base font-normal font-raleway rounded-[5px]"
-              type="url"
+              type="text"
               name="photoUrl"
               placeholder="Enter photo URL"
             />

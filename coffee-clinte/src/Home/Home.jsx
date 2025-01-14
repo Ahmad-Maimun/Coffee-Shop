@@ -1,8 +1,19 @@
 import LocalCafeOutlinedIcon from '@mui/icons-material/LocalCafeOutlined';
 import CoffeeItems from '../components/CoffeeItems/CoffeeItems';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const Home = () => {
+  const [coffees, setCoffees] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:8000/coffees')
+      .then((res) => res.json())
+      .then((data) => {
+        setCoffees(data);
+      });
+  }, []);
+
   return (
     <div className="container mx-auto">
       <div className="text-center mb-12">
@@ -23,7 +34,11 @@ const Home = () => {
           />
         </Link>
       </div>
-      <CoffeeItems />
+      <div className="grid grid-cols-12 gap-6 mb-[120px]">
+        {coffees.map((coffee) => (
+          <CoffeeItems key={coffee._id} coffee={coffee} />
+        ))}
+      </div>
     </div>
   );
 };
