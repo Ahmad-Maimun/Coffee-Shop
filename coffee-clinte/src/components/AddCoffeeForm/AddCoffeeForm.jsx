@@ -12,7 +12,7 @@ const AddCoffeeForm = () => {
     const category = e.target.category.value;
     const details = e.target.details.value;
     const photoUrl = e.target.photoUrl.value;
-    const obj = {
+    const coffeeObj = {
       name,
       chef,
       supplier,
@@ -21,7 +21,17 @@ const AddCoffeeForm = () => {
       details,
       photoUrl,
     };
-    console.log(obj);
+    fetch('http://localhost:8000/coffees', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(coffeeObj),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
   return (
     <div className="bg-[url(./assets/images/more/11.png)] bg-cover bg-center">
