@@ -2,14 +2,16 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const CoffeeItems = ({ coffee }) => {
+const CoffeeItems = ({ coffee, deleteHandler }) => {
   const { name, chef, photoUrl, price, _id } = coffee;
-  const deleteHandler = (id) => {
-    console.log(id);
-  };
+
   return (
-    <div className="col-span-6 bg-[#F5F4F1] rounded-xl py-7 pr-12 flex items-center">
-      <img src={photoUrl} alt="Coffee Photo" />
+    <div className="col-span-6 bg-[#F5F4F1] rounded-xl py-7 px-11 flex items-center">
+      <img
+        className="w-44 h-44 object-cover rounded-full"
+        src={photoUrl}
+        alt="Coffee Photo"
+      />
       <div className="coffee-info ml-4 gap-3 flex flex-col">
         <span className="text-xl font-semibold font-raleway text-[#1B1A1A]">
           Name:{' '}
