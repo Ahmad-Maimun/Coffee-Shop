@@ -1,7 +1,45 @@
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const UpdateCoffeeForm = () => {
+  const data = useLoaderData();
+
+  const { name, chef, supplier, price, category, details, photoUrl, _id } =
+    data;
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    const name = e.target.name.value;
+    const chef = e.target.chef.value;
+    const supplier = e.target.supplier.value;
+    const price = e.target.price.value;
+    const category = e.target.category.value;
+    const details = e.target.details.value;
+    const photoUrl = e.target.photoUrl.value;
+    const coffeeObj = {
+      name,
+      chef,
+      supplier,
+      price,
+      category,
+      details,
+      photoUrl,
+    };
+
+    fetch(`http://localhost:8000/coffee/${_id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(coffeeObj),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
   return (
     <div className="">
       <div className="w-11/12 mx-auto">
@@ -25,7 +63,7 @@ const UpdateCoffeeForm = () => {
               distribution of letters, as opposed to using Content here.
             </p>
           </div>
-          <form action="" className="flex flex-col">
+          <form action="" className="flex flex-col" onSubmit={submitHandler}>
             <div className="grid grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name">Name</label>
@@ -33,6 +71,7 @@ const UpdateCoffeeForm = () => {
                   className="mt-4 w-full py-[11px] pl-[11px] text-base font-normal font-raleway rounded-[5px]"
                   type="text"
                   name="name"
+                  defaultValue={name}
                   id=""
                   placeholder="Enter coffee name"
                 />
@@ -43,6 +82,7 @@ const UpdateCoffeeForm = () => {
                   className="mt-4 w-full py-[11px] pl-[11px] text-base font-normal font-raleway rounded-[5px]"
                   type="text"
                   name="chef"
+                  defaultValue={chef}
                   id="chef"
                   placeholder="Enter coffee chef"
                 />
@@ -53,6 +93,7 @@ const UpdateCoffeeForm = () => {
                   className="mt-4 w-full py-[11px] pl-[11px] text-base font-normal font-raleway rounded-[5px]"
                   type="text"
                   name="supplier"
+                  defaultValue={supplier}
                   id=""
                   placeholder="Enter coffee supplier"
                 />
@@ -63,6 +104,7 @@ const UpdateCoffeeForm = () => {
                   className="mt-4 w-full py-[11px] pl-[11px] text-base font-normal font-raleway rounded-[5px]"
                   type="number"
                   name="price"
+                  defaultValue={price}
                   id=""
                   placeholder="Enter coffee price"
                 />
@@ -73,6 +115,7 @@ const UpdateCoffeeForm = () => {
                   className="mt-4 w-full py-[11px] pl-[11px] text-base font-normal font-raleway rounded-[5px]"
                   type="text"
                   name="category"
+                  defaultValue={category}
                   id=""
                   placeholder="Enter coffee category"
                 />
@@ -83,6 +126,7 @@ const UpdateCoffeeForm = () => {
                   className="mt-4 w-full py-[11px] pl-[11px] text-base font-normal font-raleway rounded-[5px]"
                   type="text"
                   name="details"
+                  defaultValue={details}
                   id=""
                   placeholder="Enter coffee details"
                 />
@@ -95,6 +139,7 @@ const UpdateCoffeeForm = () => {
               className="mt-4 w-full py-[11px] pl-[11px] text-base font-normal font-raleway rounded-[5px]"
               type="text"
               name="photoUrl"
+              defaultValue={photoUrl}
               placeholder="Enter photo URL"
             />
             <button className="bg-[#D2B48C] border-2 border-[#331A15] rounded-[5px] mt-6 py-3 text-2xl font-rancho font-normal text-[#331A15]">

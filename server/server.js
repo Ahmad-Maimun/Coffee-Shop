@@ -34,10 +34,45 @@ async function run() {
       res.send(result);
     });
 
+    // get single coffee from database
+    app.get('/coffee/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await coffeeCollection.findOne(query);
+      res.send(result);
+    });
+
     // Post Coffee
     app.post('/coffees', async (req, res) => {
       const coffee = req.body;
       const result = await coffeeCollection.insertOne(coffee);
+      res.send(result);
+    });
+
+    // Upadte Coffee
+    app.put('/coffee/:id', async (req, res) => {
+      const coffee = req.body;
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const options = { upsert: true };
+
+      const updateObject = {
+        $set: {
+          name: coffee.name,
+          chef: coffee.chef,
+          supplier: coffee.supplier,
+          price: coffee.price,
+          category: coffee.category,
+          details: coffee.details,
+          photoUrl: coffee.photoUrl,
+        },
+      };
+
+      const result = await coffeeCollection.updateOne(
+        filter,
+        updateObject,
+        options
+      );
       res.send(result);
     });
 
@@ -56,6 +91,7 @@ async function run() {
     );
   } finally {
     // Ensures that the client will close when you finish/error
+    // await client.close();
   }
 }
 run().catch(console.dir);
