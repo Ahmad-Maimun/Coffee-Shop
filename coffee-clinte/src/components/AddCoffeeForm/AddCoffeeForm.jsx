@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Swal from 'sweetalert2';
 
 const AddCoffeeForm = () => {
+  const navigate = useNavigate();
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -33,6 +34,7 @@ const AddCoffeeForm = () => {
       .then((data) => {
         if (data.insertedId) {
           e.target.reset();
+          navigate('/');
           Swal.fire({
             title: 'Good job!',
             text: 'Your coffee has been added!',

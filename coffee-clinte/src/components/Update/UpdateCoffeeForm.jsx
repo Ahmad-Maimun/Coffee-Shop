@@ -1,8 +1,10 @@
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Swal from 'sweetalert2';
 
 const UpdateCoffeeForm = () => {
   const data = useLoaderData();
+  const navigate = useNavigate();
 
   const { name, chef, supplier, price, category, details, photoUrl, _id } =
     data;
@@ -36,7 +38,14 @@ const UpdateCoffeeForm = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.modifiedCount > 0) {
+          navigate('/');
+          Swal.fire({
+            title: 'Good job!',
+            text: 'Your coffee has been updated!',
+            icon: 'success',
+          });
+        }
       });
   };
 
