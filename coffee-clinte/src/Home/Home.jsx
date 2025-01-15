@@ -46,7 +46,7 @@ const Home = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="w-11/12 mx-auto">
       <div className="text-center mb-12">
         <span className="text-xl font-normal font-raleway text-[#1B1A1A] mb-2 mt-28 block">
           --- Sip & Savor ---

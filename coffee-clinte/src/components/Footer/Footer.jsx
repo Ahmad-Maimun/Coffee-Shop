@@ -10,7 +10,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 const Footer = () => {
   return (
     <div className="bg-center bg-[url(./assets/images/more/13.jpg)]">
-      <div className="container mx-auto grid grid-cols-12 items-center pt-[100px] pb-6">
+      <div className="w-11/12 mx-auto grid grid-cols-12 items-center pt-[100px] pb-6">
         <div className="col-span-6">
           <img className="w-[75px] h-[90px] mb-6" src={navbarLogo} alt="" />
           <span className="font-rancho text-[#331A15] text-5xl font-normal mb-8 block">

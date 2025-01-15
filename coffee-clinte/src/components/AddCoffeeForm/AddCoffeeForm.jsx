@@ -44,7 +44,7 @@ const AddCoffeeForm = () => {
 
   return (
     <div className="bg-[url(./assets/images/more/11.png)] bg-cover bg-center">
-      <div className="container mx-auto">
+      <div className="w-11/12 mx-auto">
         <div className="py-12">
           <Link
             to="/"
