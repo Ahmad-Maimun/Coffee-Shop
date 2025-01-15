@@ -1,7 +1,7 @@
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-
+import { Link } from 'react-router-dom';
 const CoffeeItems = ({ coffee, deleteHandler }) => {
   const { name, chef, photoUrl, price, _id } = coffee;
 
@@ -36,9 +36,12 @@ const CoffeeItems = ({ coffee, deleteHandler }) => {
         <button className="w-14 h-14 bg-[#D2B48C] rounded-[5px]">
           <RemoveRedEyeIcon sx={{ fontSize: '25px' }} className="text-white" />
         </button>
-        <button className="w-14 h-14 bg-[#3C393B] rounded-[5px]">
-          <EditIcon sx={{ fontSize: '25px' }} className="text-white" />
-        </button>
+
+        <Link to={`/update/${_id}`}>
+          <button className="w-14 h-14 bg-[#3C393B] rounded-[5px]">
+            <EditIcon sx={{ fontSize: '25px' }} className="text-white" />
+          </button>
+        </Link>
         <button
           onClick={() => deleteHandler(_id)}
           className="w-14 h-14 bg-[#EA4744] rounded-[5px]"
