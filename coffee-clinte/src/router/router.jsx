@@ -3,6 +3,8 @@ import App from '../App';
 import Home from '../Home/Home';
 import AddCoffeeForm from '../components/AddCoffeeForm/AddCoffeeForm';
 import UpdateCoffeeForm from '../components/Update/UpdateCoffeeForm';
+import Login from '../pages/login/Login';
+import Register from '../pages/register/Register';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
         element: <UpdateCoffeeForm />,
         loader: ({ params }) =>
           fetch(`http://localhost:8000/coffee/${params.id}`),
+      },
+      {
+        path: '/login',
+        element: <Login />,
+      },
+      {
+        path: '/register',
+        element: <Register />,
       },
     ],
   },
