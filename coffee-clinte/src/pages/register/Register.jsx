@@ -1,7 +1,19 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link } from 'react-router';
+import useAuth from '../../Hooks/useAuth';
 
 const Register = () => {
+  const { createUser } = useAuth();
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+    createUser(data.email, data.password).then((result) => {
+      console.log(result);
+    });
+  };
+
   return (
     <div className="bg-[url(./assets/images/more/11.png)] bg-cover bg-center">
       <Link to="/" className="text-3xl font-rancho font-normal text-[#374151]">
@@ -11,13 +23,14 @@ const Register = () => {
         <h2 className="text-2xl font-bold text-center text-[#8C4A2F] mb-6">
           Register
         </h2>
-        <form>
+        <form onSubmit={submitHandler}>
           <div className="mb-4">
             <label className="block text-sm font-medium text-[#8C4A2F] mb-1">
               Name
             </label>
             <input
               type="text"
+              name="name"
               className="w-full px-4 py-2 border border-[#D9A17E] rounded-md focus:outline-none focus:ring focus:ring-[#D9A17E]"
               placeholder="Enter your name"
             />
@@ -28,6 +41,7 @@ const Register = () => {
             </label>
             <input
               type="email"
+              name="email"
               className="w-full px-4 py-2 border border-[#D9A17E] rounded-md focus:outline-none focus:ring focus:ring-[#D9A17E]"
               placeholder="Enter your email"
             />
@@ -38,6 +52,7 @@ const Register = () => {
             </label>
             <input
               type="password"
+              name="password"
               className="w-full px-4 py-2 border border-[#D9A17E] rounded-md focus:outline-none focus:ring focus:ring-[#D9A17E]"
               placeholder="Enter your password"
             />
